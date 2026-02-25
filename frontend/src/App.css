@@ -1,0 +1,120 @@
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #fdf5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Login card */
+.login-card {
+  background-color: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 350px;
+  text-align: center;
+}
+
+/* Logo */
+.login-card img.logo {
+  max-width: 180px;
+  margin-bottom: 1.5rem;
+}
+
+/* Title / select */
+.login-card select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fff0f0;
+  font-size: 1rem;
+}
+
+/* Inputs */
+.login-card input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f0f5ff;
+  font-size: 1rem;
+}
+
+/* Captcha and small inputs */
+.login-card .captcha-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.login-card .captcha-container input {
+  flex: 1;
+  padding: 0.7rem;
+  font-size: 0.9rem;
+}
+
+.login-card .captcha-container img {
+  height: 38px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* Button */
+.login-card button {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff8c42;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-card button:hover {
+  background-color: #e27d2f;
+}
+
+/* Forgot password */
+.login-card a {
+  display: block;
+  margin-top: 0.8rem;
+  color: #555;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.login-card a:hover {
+  text-decoration: underline;
+}
+
+/* Student mail icon */
+.student-mail {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.student-mail svg {
+  width: 20px;
+  height: 20px;
+}
