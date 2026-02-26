@@ -19,6 +19,10 @@ const userSchema = mongoose.Schema(
       type: String,
       enum: ["admin", "faculty", "student"],
       default: "student"
+    },
+    features: {
+      type: [String],
+      default: []
     }
   },
   {

@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import { getDefaultFeaturesByRole } from "../utils/roleFeatures.js";
 
 export const protect = async (req, res, next) => {
   let token;
@@ -18,6 +19,12 @@ export const protect = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = await User.findById(decoded.id).select("-password");
+
+    if (req.user && (!Array.isArray(req.user.features) || !req.user.features.length)) {
+      req.user.features = getDefaultFeaturesByRole(req.user.role);
+      await req.user.save();
+    }
+
     next();
   } catch (error) {
     res.status(401).json({ message: "Not authorized, token failed" });

@@ -8,6 +8,7 @@ export default function AddResult() {
   const [subject, setSubject] = useState("");
   const [marks, setMarks] = useState("");
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
 
   useEffect(() => {
     // Fetch students and subjects
@@ -29,19 +30,21 @@ export default function AddResult() {
     try {
       await api.post("/results", { student, subject, marks: Number(marks) });
       setMessage("Result added successfully!");
+      setMessageType("success");
       setMarks("");
       setStudent("");
       setSubject("");
     } catch (err) {
       setMessage(err.response?.data?.message || "Error adding result");
+      setMessageType("error");
     }
   };
 
   return (
-    <div className="card">
-      <h2>Add Result</h2>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit}>
+    <div className="card section-card">
+      <h2 className="section-title">Add Result</h2>
+      {message && <p className={`alert ${messageType}`}>{message}</p>}
+      <form className="grid-form" onSubmit={handleSubmit}>
         <select value={student} onChange={(e) => setStudent(e.target.value)} required>
           <option value="">Select Student</option>
           {students.map((s) => (
@@ -66,7 +69,9 @@ export default function AddResult() {
           required
         />
 
-        <button type="submit">Add Result</button>
+        <button className="btn-primary" type="submit">
+          Add Result
+        </button>
       </form>
     </div>
   );

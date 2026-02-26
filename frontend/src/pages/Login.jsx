@@ -28,13 +28,29 @@ export default function Login() {
   };
 
   return (
-    <div className="login-form">
-      <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
+    <div className="login-shell">
+      <section className="card login-showcase">
+        <p className="form-eyebrow">Modern Campus Platform</p>
+        <h1>UMS Portal</h1>
+        <p className="section-subtitle">
+          Centralize student progress, faculty workflows, and admin control in one place.
+        </p>
+        <div className="pill-row">
+          <span className="feature-pill">Smart Results</span>
+          <span className="feature-pill">Role Access</span>
+          <span className="feature-pill">Fast Management</span>
+        </div>
+      </section>
+      <form className="card form-card login-card" onSubmit={handleSubmit}>
+        <p className="form-eyebrow">University Management System</p>
+        <h2>Welcome Back</h2>
+        <p className="section-subtitle">Sign in to continue</p>
         <input
+          type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="email"
           required
         />
         <input
@@ -42,9 +58,12 @@ export default function Login() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
           required
         />
-        <button type="submit">Login</button>
+        <button className="btn-primary" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

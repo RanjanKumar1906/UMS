@@ -11,10 +11,11 @@ import courseRoutes from "./routes/courseRoutes.js";
 import subjectRoutes from "./routes/subjectRoutes.js";
 import attendanceRoutes from "./routes/attendanceRoutes.js";
 import resultRoutes from "./routes/resultRoutes.js";
+import { syncAllUserFeatures } from "./utils/featureSync.js";
+import { syncStudentProfiles } from "./utils/studentSync.js";
 
 
 dotenv.config();
-connectDB(); 
 
 const app = express();
 
@@ -38,6 +39,28 @@ app.use("/api/subjects", subjectRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/results", resultRoutes);
 const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+
+const startServer = async () => {
+  await connectDB();
+
+  try {
+    const syncResult = await syncAllUserFeatures();
+    console.log(
+      `Feature sync complete: ${syncResult.updatedUsers}/${syncResult.totalUsers} users updated`
+    );
+
+    const studentSync = await syncStudentProfiles();
+    console.log(
+      `Student sync complete: ${studentSync.linkedProfiles} linked, ${studentSync.createdProfiles} created from ${studentSync.totalStudentUsers} student users`
+    );
+  } catch (error) {
+    console.error("Startup sync failed");
+    console.error(error.message);
+  }
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+};
+
+startServer();

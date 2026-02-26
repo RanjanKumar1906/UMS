@@ -13,15 +13,17 @@ export default function Layout({ children }) {
   return (
     <div className="page">
       <header className="header">
-        <Link to="/">
+        <Link to="/" className="brand">
           <h1 className="logo-text">UMS</h1>
+          <span>University Management System</span>
         </Link>
         {user && (
           <div className="header-right">
             <span className="user-info">
-              {user.name} ({user.role})
+              {user.name}
+              <span className="role-pill">{user.role}</span>
             </span>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="btn-secondary" onClick={handleLogout}>Sign out</button>
           </div>
         )}
       </header>

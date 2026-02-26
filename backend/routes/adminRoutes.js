@@ -1,6 +1,7 @@
 import express from "express";
 import { protect } from "../middleware/authMiddleware.js";
 import authorizeRoles from "../middleware/roleMiddleware.js";
+import authorizeFeatures from "../middleware/featureMiddleware.js";
 
 const router = express.Router();
 
@@ -8,6 +9,7 @@ router.get(
   "/dashboard",
   protect,
   authorizeRoles("admin"),
+  authorizeFeatures("dashboard:admin"),
   (req, res) => {
     res.json({
       message: "Welcome Admin Dashboard",

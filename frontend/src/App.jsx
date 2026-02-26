@@ -5,6 +5,7 @@ import FacultyDashboard from "./pages/FacultyDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Layout from "./components/Layout.jsx";
 import { AuthProvider } from "./context/AuthContext";
+import "./App.css";
 
 export default function App() {
   return (
